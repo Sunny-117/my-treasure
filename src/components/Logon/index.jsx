@@ -52,12 +52,12 @@ const Logon = () => {
             </Form.Item>
 
             <Form.Item
-                label="Password"
-                name="password"
+                label="Repassword"
+                name="Repassword"
                 rules={[
                     {
                         required: true,
-                        message: 'Please input your password!',
+                        message: 'Please input your Repassword!',
                     },
                 ]}
             >
