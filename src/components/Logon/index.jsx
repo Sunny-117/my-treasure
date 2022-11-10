@@ -1,22 +1,30 @@
 
 
-import { Button, Checkbox, Form, Input } from 'antd';
-import React from 'react';
-import instance from '@/api/index'
+import { Button, Checkbox, Form, Input, message } from 'antd';
+import React, { useState } from 'react';
+import instance from '@/api/index';
+import { useNavigate } from 'react-router';
+
 
 const Logon = () => {
+    const navigate = useNavigate()
+    const [username, setUsername] = useState("")
+    const [password, setPassword] = useState("")
     const onFinish = async (values) => {
-        const res = await instance.post('/api/user/reg', {
-            "loginId": "sunny",
-            "nickname": "sunny",
-            "loginPwd": "qwert123"
-            // appkey: "__sunny___1615100707839",
-            // account: "sunny",
-            // username: 'sunny',
-            // password: "aa1111",
-            // rePassword: "aa1111"
+        const { username, password, repassword } = values;
+        console.log(values, 'n')
+        const { data } = await instance.post('/api/user/reg', {
+            "loginId": username,
+            "nickname": username,
+            "loginPwd": password
         })
-        console.log(res)
+        if (data) {
+            message.success('注册成功')
+            navigate('/login')
+        }
+
+
+
     };
     const onFinishFailed = (errorInfo) => {
         console.log('Failed:', errorInfo);
@@ -64,13 +72,23 @@ const Logon = () => {
             </Form.Item>
 
             <Form.Item
-                label="Repassword"
-                name="Repassword"
+                name="confirm"
+                label="Confirm Password"
+                dependencies={['password']}
+                hasFeedback
                 rules={[
                     {
                         required: true,
-                        message: 'Please input your Repassword!',
+                        message: 'Please confirm your password!',
                     },
+                    ({ getFieldValue }) => ({
+                        validator(_, value) {
+                            if (!value || getFieldValue('password') === value) {
+                                return Promise.resolve();
+                            }
+                            return Promise.reject(new Error('The two passwords that you entered do not match!'));
+                        },
+                    }),
                 ]}
             >
                 <Input.Password />
