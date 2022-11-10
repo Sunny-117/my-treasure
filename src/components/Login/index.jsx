@@ -1,10 +1,28 @@
 
 
-import { Button, Checkbox, Form, Input } from 'antd';
+import { Button, Checkbox, Form, Input, message } from 'antd';
 import React from 'react';
+import instance from '@/api/index';
+import { useNavigate } from 'react-router';
+
+
 const Login = () => {
-    const onFinish = (values) => {
-        console.log('Success:', values);
+    const navigate = useNavigate()
+    const onFinish = async (values) => {
+        const { username, password } = values;
+        console.log(values, 'n')
+        const { data } = await instance.post('/api/user/reg', {
+            "loginId": username,
+            "nickname": username,
+            "loginPwd": password
+        })
+        if (data) {
+            message.success('注册成功')
+            navigate('/login')
+        }
+
+
+
     };
     const onFinishFailed = (errorInfo) => {
         console.log('Failed:', errorInfo);
@@ -52,24 +70,13 @@ const Login = () => {
             </Form.Item>
 
             <Form.Item
-                name="remember"
-                valuePropName="checked"
-                wrapperCol={{
-                    offset: 8,
-                    span: 16,
-                }}
-            >
-                <Checkbox>Remember me</Checkbox>
-            </Form.Item>
-
-            <Form.Item
                 wrapperCol={{
                     offset: 8,
                     span: 16,
                 }}
             >
                 <Button type="primary" htmlType="submit">
-                    Submit
+                    登陆
                 </Button>
             </Form.Item>
         </Form>
