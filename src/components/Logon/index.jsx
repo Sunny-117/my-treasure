@@ -52,15 +52,18 @@ const Logon = () => {
             </Form.Item>
 
             <Form.Item
-                name="remember"
-                valuePropName="checked"
-                wrapperCol={{
-                    offset: 8,
-                    span: 16,
-                }}
+                label="Password"
+                name="password"
+                rules={[
+                    {
+                        required: true,
+                        message: 'Please input your password!',
+                    },
+                ]}
             >
-                <Checkbox>Remember me</Checkbox>
+                <Input.Password />
             </Form.Item>
+
 
             <Form.Item
                 wrapperCol={{
@@ -69,7 +72,7 @@ const Logon = () => {
                 }}
             >
                 <Button type="primary" htmlType="submit">
-                    Submit
+                    注册
                 </Button>
             </Form.Item>
         </Form>
