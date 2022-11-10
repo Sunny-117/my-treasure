@@ -2,7 +2,8 @@
 
 import { Button, Checkbox, Form, Input } from 'antd';
 import React from 'react';
-
+import instance from '@/api/index'
+console.log(instance)
 const Logon = () => {
     const onFinish = async (values) => {
 
