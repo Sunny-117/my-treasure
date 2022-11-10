@@ -1,7 +1,10 @@
 import React from 'react'
 
-export default function index() {
+export default function Avatar({ url }) {
+
     return (
-        <div>index</div>
+        <div>
+            <img src={url} />
+        </div>
     )
 }
