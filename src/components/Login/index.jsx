@@ -11,7 +11,7 @@ const Login = () => {
     const onFinish = async (values) => {
         const { username, password } = values;
         console.log(values, 'n')
-        const { data } = await instance.post('/api/user/reg', {
+        const { data } = await instance.post('/api/user/login', {
             "loginId": username,
             "nickname": username,
             "loginPwd": password
@@ -20,8 +20,6 @@ const Login = () => {
             message.success('注册成功')
             navigate('/login')
         }
-
-
 
     };
     const onFinishFailed = (errorInfo) => {

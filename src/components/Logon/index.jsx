@@ -22,9 +22,6 @@ const Logon = () => {
             message.success('注册成功')
             navigate('/login')
         }
-
-
-
     };
     const onFinishFailed = (errorInfo) => {
         console.log('Failed:', errorInfo);
