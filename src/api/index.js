@@ -6,4 +6,15 @@ const instance = axios.create({
     timeout: 1000,
     headers: { 'Content-Type': 'application/json' }
 });
+
+
+instance.interceptors.response.use(function (response) {
+    // 对响应数据做点什么
+    console.log(111, response)
+    return response;
+}, function (error) {
+    // 对响应错误做点什么
+    return Promise.reject(error);
+});
+
 export default instance
