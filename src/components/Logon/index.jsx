@@ -1,22 +1,28 @@
 
 
-import { Button, Checkbox, Form, Input } from 'antd';
-import React from 'react';
-import instance from '@/api/index'
+import { Button, Checkbox, Form, Input, message } from 'antd';
+import React, { useState } from 'react';
+import instance from '@/api/index';
+import { useNavigate } from 'react-router';
 
-const Logon = () => {
+
+const Login = () => {
+    const navigate = useNavigate()
     const onFinish = async (values) => {
-        const res = await instance.post('/api/user/reg', {
-            "loginId": "sunny",
-            "nickname": "sunny",
-            "loginPwd": "qwert123"
-            // appkey: "__sunny___1615100707839",
-            // account: "sunny",
-            // username: 'sunny',
-            // password: "aa1111",
-            // rePassword: "aa1111"
+        const { username, password } = values;
+        console.log(values, 'n')
+        const { data } = await instance.post('/api/user/reg', {
+            "loginId": username,
+            "nickname": username,
+            "loginPwd": password
         })
-        console.log(res)
+        if (data) {
+            message.success('注册成功')
+            navigate('/login')
+        }
+
+
+
     };
     const onFinishFailed = (errorInfo) => {
         console.log('Failed:', errorInfo);
@@ -63,18 +69,7 @@ const Logon = () => {
                 <Input.Password />
             </Form.Item>
 
-            <Form.Item
-                label="Repassword"
-                name="Repassword"
-                rules={[
-                    {
-                        required: true,
-                        message: 'Please input your Repassword!',
-                    },
-                ]}
-            >
-                <Input.Password />
-            </Form.Item>
+
 
 
             <Form.Item
@@ -84,10 +79,10 @@ const Logon = () => {
                 }}
             >
                 <Button type="primary" htmlType="submit">
-                    注册
+                    登陆
                 </Button>
             </Form.Item>
         </Form>
     );
 };
-export default Logon;
+export default Login;
