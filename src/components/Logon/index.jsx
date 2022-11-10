@@ -3,10 +3,11 @@
 import { Button, Checkbox, Form, Input } from 'antd';
 import React from 'react';
 import instance from '@/api/index'
-console.log(instance)
+
 const Logon = () => {
     const onFinish = async (values) => {
-
+        const res = await instance.get('/api/user/reg')
+        console.log(res)
     };
     const onFinishFailed = (errorInfo) => {
         console.log('Failed:', errorInfo);
