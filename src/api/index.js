@@ -10,10 +10,9 @@ const instance = axios.create({
 
 instance.interceptors.response.use(function (response) {
     // 对响应数据做点什么
-    const { data, error } = response
+    const { data } = response
     return {
         data,
-        error
     };
 }, function (error) {
     // 对响应错误做点什么
