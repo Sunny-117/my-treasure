@@ -1,6 +1,6 @@
 import React from 'react'
-import Login from '../../components/Login/index'
-export default function LoginPage() {
+import Logon from '../../components/Logon/index'
+export default function LogonPage() {
     return (
         <div style={{
             height: '100vh',
@@ -8,7 +8,7 @@ export default function LoginPage() {
             justifyContent: 'center',
             alignItems: 'center'
         }}>
-            <Login />
+            <Logon />
         </div>
     )
 }
