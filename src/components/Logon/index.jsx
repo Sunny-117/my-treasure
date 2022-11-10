@@ -6,7 +6,7 @@ import instance from '@/api/index'
 
 const Logon = () => {
     const onFinish = async (values) => {
-        const res = await instance.get('/api/user/reg', {
+        const res = await instance.post('/api/user/reg', {
             "loginId": "sunny",
             "nickname": "sunny",
             "loginPwd": "qwert123"
