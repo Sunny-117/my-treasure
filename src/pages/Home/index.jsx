@@ -3,7 +3,7 @@ import './index.less'
 export default function Home() {
     return (
         <div className='chat'>
-
+            <Avatar />
         </div>
     )
 }

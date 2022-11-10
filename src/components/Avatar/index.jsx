@@ -1,9 +1,10 @@
 import React from 'react'
 
+
 export default function Avatar({ url }) {
 
     return (
-        <div>
+        <div className='avatar'>
             <img src={url} />
         </div>
     )
