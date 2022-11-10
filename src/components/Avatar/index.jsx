@@ -7,7 +7,7 @@ export default function Avatar({ url, radius }) {
         <div className='avatar' style={{
         }}>
             <img src={url} style={{
-                border: '1px solid'
+                border: '1px solid',
                 borderRadius: radius
             }} />
         </div>
