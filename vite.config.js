@@ -5,7 +5,10 @@ import path from 'path'
 export default defineConfig({
   server: {
     proxy: {
-      '/api': 'http://127.0.0.1:5173/',
+      '/api': {
+        target: 'https://open.duyiedu.com',
+        changeOrigin: true,
+      },
     }
   },
   resolve: {
