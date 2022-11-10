@@ -6,15 +6,15 @@ import instance from '@/api/index'
 
 const Logon = () => {
     const onFinish = async (values) => {
-        const res = await instance.post('/api/student/stuRegister', {
-            // "loginId": "sunny",
-            // "nickname": "sunny",
-            // "loginPwd": "qwert123"
-            appkey: "__sunny___1615100707839",
-            account: "sunny",
-            username: 'sunny',
-            password: "aa1111",
-            rePassword: "aa1111"
+        const res = await instance.post('/api/user/reg', {
+            "loginId": "sunny",
+            "nickname": "sunny",
+            "loginPwd": "qwert123"
+            // appkey: "__sunny___1615100707839",
+            // account: "sunny",
+            // username: 'sunny',
+            // password: "aa1111",
+            // rePassword: "aa1111"
         })
         console.log(res)
     };
