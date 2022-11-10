@@ -1,8 +1,12 @@
 import React from 'react'
-import Login from '../../components/Login'
-export default function Login() {
+import Login from '../../components/Login/index'
+export default function LoginPage() {
     return (
-        <div>
+        <div style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center'
+        }}>
             <Login />
         </div>
     )
