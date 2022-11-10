@@ -13,12 +13,11 @@ const Login = () => {
         console.log(values, 'n')
         const { data } = await instance.post('/api/user/login', {
             "loginId": username,
-            "nickname": username,
-            "loginPwd": password
+            "loginPwd": password,
         })
         if (data) {
-            message.success('注册成功')
-            navigate('/login')
+            message.success('登陆成功')
+            navigate('/')
         }
 
     };
