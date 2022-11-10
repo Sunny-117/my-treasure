@@ -5,3 +5,10 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()]
 })
+
+
+
+// 脚手架
+// vue-cli
+// create-react-app
+// vite

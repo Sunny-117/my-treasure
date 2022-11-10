@@ -2,9 +2,10 @@
 
 import { Button, Checkbox, Form, Input } from 'antd';
 import React from 'react';
+
 const Logon = () => {
-    const onFinish = (values) => {
-        console.log('Success:', values);
+    const onFinish = async (values) => {
+
     };
     const onFinishFailed = (errorInfo) => {
         console.log('Failed:', errorInfo);
