@@ -1,20 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-
 <body>
-
-    <script>
-
-    </script>
-
+    <header></header>
+    <div class="main">
+        <div class="left"></div>
+        <div class="right"></div>
+    </div>
 </body>
 
+<style>
+    body {
+        margin: 0px;
+        position: relative;
+        display: flex;
+        flex-flow: column nowrap;
+    }
 
-</html>
+    header {
+        border: 1px solid;
+        flex: 0 0 50px;
+    }
+
+    .mian {
+        border: 1px solid red;
+        flex: 1 0 auto;
+        display: flex;
+        position: relative;
+        flex-flow: row nowrap;
+    }
+
+    .left {
+        flex: 0 0 100px;
+    }
+
+    .right {
+        flex: auto;
+    }
+</style>

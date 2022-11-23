@@ -1,10 +1,12 @@
 
 import axios from 'axios'
+import { AUTH_TOKEN } from '@/utils/const.js'
 const instance = axios.create({
-    // baseURL: 'https://open.duyiedu.com',
     baseURL: 'https://study.duyiedu.com',
     timeout: 1000,
-    headers: { 'Content-Type': 'application/json' }
+    // headers: {
+    //     authorization: AUTH_TOKEN
+    // }
 });
 
 
