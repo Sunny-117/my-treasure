@@ -7,3 +7,6 @@ export async function getStudentList(url) {
 export async function deleteStudent(url) {
     return instance.get(url)
 }
+export async function searchStudent(url) {
+    return instance.get(url)
+}

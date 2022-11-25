@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { Space, Table, Tag, Button, Modal, message } from 'antd';
-import { getStudentList, deleteStudent } from '@/api/apiList'
+import { Space, Table, Tag, Button, Modal, message, Form, Input, Drawer } from 'antd';
+import { getStudentList, deleteStudent, searchStudent } from '@/api/apiList'
 import { StepForwardOutlined } from '@ant-design/icons';
+
 
 export default function StudentList() {
     const [newData, setNewData] = useState([])
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(false);
+    const [open, setOpen] = useState(false);
+    const [initialVal, setInitialVal] = useState({})
     async function getList() {
         setLoading(true)
         const { data } = await getStudentList('/api/student/findAll?appkey=demo13_1545210570249')
@@ -25,6 +28,18 @@ export default function StudentList() {
     useEffect(() => {
         getList()
     }, [])
+    const onFinish = (values) => {
+        console.log('Success:', values);
+    };
+    const onFinishFailed = (errorInfo) => {
+        console.log('Failed:', errorInfo);
+    };
+    const showDrawer = () => {
+        setOpen(true);
+    };
+    const onClose = () => {
+        setOpen(false);
+    };
     const handleCheck = () => {
 
     }
@@ -49,8 +64,20 @@ export default function StudentList() {
         })
 
     }
-    const handleEdit = () => {
 
+
+    const handleEdit = async (sNo) => {
+        showDrawer()
+        setLoading(true)
+        const { data } = await getStudentList(`/api/student/searchStudent?appkey=demo13_1545210570249&sex=-1&search=${sNo}&page=1&size=1`)
+        setLoading(false)
+        const dataObj = data.data.searchList[0];
+        const obj = {
+            username: dataObj.name,
+            address: dataObj.address,
+            age: dataObj.birth
+        }
+        setInitialVal(obj)
     }
 
     const columns = [
@@ -77,14 +104,57 @@ export default function StudentList() {
                 console.log(record, 'record');
                 return <Space size="middle">
                     <Button onClick={handleCheck}>查看</Button>
-                    <Button onCick={handleEdit}>编辑</Button>
+                    <Button onClick={() => { handleEdit(record.sNo) }}>编辑</Button>
                     <Button onClick={() => { handleDelete(record.sNo) }}>删除</Button>
                 </Space>
             },
         },
     ];
-    return <Table
-        loading={loading}
-        columns={columns}
-        dataSource={newData} />
+
+    return <div>
+        <Table
+            loading={loading}
+            columns={columns}
+            dataSource={newData} />
+        <Drawer title="Basic Drawer" placement="right" onClose={onClose} open={open}>
+            {loading ? 'loading' : <Form
+                name="basic"
+                labelCol={{ span: 8 }}
+                wrapperCol={{ span: 16 }}
+                initialValues={initialVal}
+                onFinish={onFinish}
+                onFinishFailed={onFinishFailed}
+                autoComplete="off"
+            >
+                <Form.Item
+                    label="name"
+                    name="username"
+                    rules={[{ required: true, message: 'Please input your username!' }]}
+                >
+                    <Input />
+                </Form.Item>
+
+                <Form.Item
+                    label="age"
+                    name="password"
+                    rules={[{ required: true, message: 'Please input your password!' }]}
+                >
+                    <Input.Password />
+                </Form.Item>
+                <Form.Item
+                    label="address"
+                    name="address"
+                    rules={[{ required: true, message: 'Please input your password!' }]}
+                >
+                    <Input.Password />
+                </Form.Item>
+                <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
+                    <Button type="primary" htmlType="submit">
+                        Submit
+                    </Button>
+                </Form.Item>
+            </Form>}
+        </Drawer >
+    </div>
+
 }
