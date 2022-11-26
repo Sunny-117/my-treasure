@@ -3,14 +3,12 @@ import { Space, Table, Tag, Button, Modal, message, Form, Input, Drawer } from '
 import { getStudentList, deleteStudent, searchStudent } from '@/api/apiList'
 import { StepForwardOutlined } from '@ant-design/icons';
 
-
 export default function StudentList() {
     const [form] = Form.useForm();
 
     const [newData, setNewData] = useState([])
     const [loading, setLoading] = useState(false);
     const [open, setOpen] = useState(false);
-    const [initialVal, setInitialVal] = useState({})
     async function getList() {
         setLoading(true)
         const { data } = await getStudentList('/api/student/findAll?appkey=demo13_1545210570249')
@@ -113,6 +111,7 @@ export default function StudentList() {
 
     return <>
         <div>
+
             <Table
                 loading={loading}
                 columns={columns}
@@ -123,7 +122,7 @@ export default function StudentList() {
                     name="basic"
                     labelCol={{ span: 8 }}
                     wrapperCol={{ span: 16 }}
-                    initialValues={initialVal}
+                    initialValues={{}}
                     onFinish={onFinish}
                     onFinishFailed={onFinishFailed}
                     autoComplete="off"
@@ -156,3 +155,19 @@ export default function StudentList() {
     </>
 
 }
+
+// import React, { useState } from 'react'
+
+// export default function index() {
+//     const [n, setN] = useState(0)
+//     return (
+//         <div>
+//             <h1>
+//                 <button onClick={() => {
+//                     setN(n + 1)
+//                 }}>+</button>
+//                 {n}
+//             </h1>
+//         </div>
+//     )
+// }
