@@ -2,9 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { Space, Table, Tag, Button, Modal, message, Form, Input, Drawer } from 'antd';
 import { getStudentList, deleteStudent, searchStudent } from '@/api/apiList'
 import { StepForwardOutlined } from '@ant-design/icons';
-
+import Tettt from './test'
 
 export default function StudentList() {
+    const [form] = Form.useForm();
+
     const [newData, setNewData] = useState([])
     const [loading, setLoading] = useState(false);
     const [open, setOpen] = useState(false);
@@ -68,9 +70,7 @@ export default function StudentList() {
 
     const handleEdit = async (sNo) => {
         showDrawer()
-        setLoading(true)
         const { data } = await getStudentList(`/api/student/searchStudent?appkey=demo13_1545210570249&sex=-1&search=${sNo}&page=1&size=1`)
-        setLoading(false)
         const dataObj = data.data.searchList[0];
         const obj = {
             username: dataObj.name,
@@ -78,7 +78,16 @@ export default function StudentList() {
             age: dataObj.birth
         }
         setInitialVal(obj)
+        form.setFieldsValue(obj);
     }
+    const onReset = () => {
+        console.log(form.getFieldValue('username'), 'aaaaaa')
+        form.resetFields();
+    };
+    // useEffect(() => {
+    //     console.log(initialVal, 'initialValinitialVal')
+    //     form.setFieldsValue({ username: '你好', address: '12', age: 1981 });
+    // }, [initialVal]);
 
     const columns = [
         {
@@ -111,50 +120,58 @@ export default function StudentList() {
         },
     ];
 
-    return <div>
-        <Table
-            loading={loading}
-            columns={columns}
-            dataSource={newData} />
-        <Drawer title="Basic Drawer" placement="right" onClose={onClose} open={open}>
-            {loading ? 'loading' : <Form
-                name="basic"
-                labelCol={{ span: 8 }}
-                wrapperCol={{ span: 16 }}
-                initialValues={initialVal}
-                onFinish={onFinish}
-                onFinishFailed={onFinishFailed}
-                autoComplete="off"
-            >
-                <Form.Item
-                    label="name"
-                    name="username"
-                    rules={[{ required: true, message: 'Please input your username!' }]}
+    return <>
+        <div>
+            <Tettt />
+        </div>
+        <div>
+            <Table
+                loading={loading}
+                columns={columns}
+                dataSource={newData} />
+            <Drawer title="Basic Drawer" placement="right" onClose={onClose} open={open}>
+                <Form
+                    form={form}
+                    name="basic"
+                    labelCol={{ span: 8 }}
+                    wrapperCol={{ span: 16 }}
+                    initialValues={initialVal}
+                    onFinish={onFinish}
+                    onFinishFailed={onFinishFailed}
+                    autoComplete="off"
                 >
-                    <Input />
-                </Form.Item>
+                    <Form.Item
+                        label="name"
+                        name="username"
+                        rules={[{ required: true, message: 'Please input your username!' }]}
+                    >
+                        <Input />
+                    </Form.Item>
 
-                <Form.Item
-                    label="age"
-                    name="password"
-                    rules={[{ required: true, message: 'Please input your password!' }]}
-                >
-                    <Input.Password />
-                </Form.Item>
-                <Form.Item
-                    label="address"
-                    name="address"
-                    rules={[{ required: true, message: 'Please input your password!' }]}
-                >
-                    <Input.Password />
-                </Form.Item>
-                <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-                    <Button type="primary" htmlType="submit">
-                        Submit
-                    </Button>
-                </Form.Item>
-            </Form>}
-        </Drawer >
-    </div>
+                    <Form.Item
+                        label="age"
+                        name="age"
+                        rules={[{ required: true, message: 'Please input your password!' }]}
+                    >
+                        <Input />
+                    </Form.Item>
+                    <Form.Item
+                        label="address"
+                        name="address"
+                        rules={[{ required: true, message: 'Please input your password!' }]}
+                    >
+                        <Input />
+                    </Form.Item>
+                    <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
+                        <Button type="primary" onClick={() => {
+                            onReset()
+                        }}>
+                            充值
+                        </Button>
+                    </Form.Item>
+                </Form>
+            </Drawer >
+        </div>
+    </>
 
 }
