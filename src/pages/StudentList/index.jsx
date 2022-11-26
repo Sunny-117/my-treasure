@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Space, Table, Tag, Button, Modal, message, Form, Input, Drawer } from 'antd';
 import { getStudentList, deleteStudent, searchStudent } from '@/api/apiList'
 import { StepForwardOutlined } from '@ant-design/icons';
-import Tettt from './test'
+
 
 export default function StudentList() {
     const [form] = Form.useForm();
@@ -77,17 +77,8 @@ export default function StudentList() {
             address: dataObj.address,
             age: dataObj.birth
         }
-        setInitialVal(obj)
         form.setFieldsValue(obj);
     }
-    const onReset = () => {
-        console.log(form.getFieldValue('username'), 'aaaaaa')
-        form.resetFields();
-    };
-    // useEffect(() => {
-    //     console.log(initialVal, 'initialValinitialVal')
-    //     form.setFieldsValue({ username: '你好', address: '12', age: 1981 });
-    // }, [initialVal]);
 
     const columns = [
         {
@@ -121,9 +112,6 @@ export default function StudentList() {
     ];
 
     return <>
-        <div>
-            <Tettt />
-        </div>
         <div>
             <Table
                 loading={loading}
@@ -161,13 +149,6 @@ export default function StudentList() {
                         rules={[{ required: true, message: 'Please input your password!' }]}
                     >
                         <Input />
-                    </Form.Item>
-                    <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-                        <Button type="primary" onClick={() => {
-                            onReset()
-                        }}>
-                            充值
-                        </Button>
                     </Form.Item>
                 </Form>
             </Drawer >
