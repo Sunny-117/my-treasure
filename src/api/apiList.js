@@ -10,3 +10,7 @@ export async function deleteStudent(url) {
 export async function searchStudent(url) {
     return instance.get(url)
 }
+
+export async function submitStudent(url) {
+    return instance.get(url)
+}
