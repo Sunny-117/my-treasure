@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { Space, Table, Tag, Button, Modal, message, Form, Input, Drawer } from 'antd';
 import { getStudentList, deleteStudent, searchStudent } from '@/api/apiList'
 import { StepForwardOutlined } from '@ant-design/icons';
-
+import { useNavigate } from "react-router-dom";
 export default function StudentList() {
+    const navigate = useNavigate();
     const [form] = Form.useForm();
-
     const [newData, setNewData] = useState([])
     const [loading, setLoading] = useState(false);
     const [open, setOpen] = useState(false);
@@ -40,8 +40,8 @@ export default function StudentList() {
     const onClose = () => {
         setOpen(false);
     };
-    const handleCheck = () => {
-
+    const handleCheck = (sNo) => {
+        navigate(`/details/${sNo}`);
     }
     const handleDelete = async (id) => {
         Modal.confirm({
@@ -101,7 +101,7 @@ export default function StudentList() {
             render: (_, record) => {
                 console.log(record, 'record');
                 return <Space size="middle">
-                    <Button onClick={handleCheck}>查看</Button>
+                    <Button onClick={() => handleCheck(record.sNo)}>查看</Button>
                     <Button onClick={() => { handleEdit(record.sNo) }}>编辑</Button>
                     <Button onClick={() => { handleDelete(record.sNo) }}>删除</Button>
                 </Space>
