@@ -14,6 +14,11 @@ function Student() {
             id: 2,
             dom: <StudentList />
         },
+        // {
+        //     name: 'button',
+        //     id: 999,
+        //     dom: <button>点击</button>
+        // }
     ])
     return (
         <div>
