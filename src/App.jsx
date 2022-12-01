@@ -20,9 +20,6 @@ export default function App() {
           <Route path="/details/:sNo" element={<StudentDetail></StudentDetail>}></Route>
           <Route path="/demo" element={<Demo></Demo>}></Route>
           <Route path="/MallAdminApp" element={<MallAdminApp></MallAdminApp>}></Route>
-
-
-
         </Routes>
       </Router>
     </div>
