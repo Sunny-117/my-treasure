@@ -4,8 +4,9 @@ function AddTab() {
     return (
         <div>
             <button onClick={() => {
-
-            }}>增加tab</button>
+                console.log('commt')
+            }}>增加tab
+            </button>
         </div>
     )
 }
