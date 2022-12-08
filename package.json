@@ -20,6 +20,7 @@
     "react-router-dom": "^6.4.3"
   },
   "devDependencies": {
+    "@ohmyts/vite": "^0.0.8",
     "@types/react": "^18.0.24",
     "@types/react-dom": "^18.0.8",
     "@vitejs/plugin-react": "^2.2.0",
