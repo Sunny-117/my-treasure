@@ -7,6 +7,7 @@ import './main.css'
 import Home from "./components/Home";
 import Add from "./components/Add";
 import NotFount from "./components/404";
+import List from "./components/List";
 type MenuItem = Required<MenuProps>['items'][number];
 function getItem(
   label: React.ReactNode,
@@ -25,6 +26,7 @@ function getItem(
 const items: MenuItem[] = [
   getItem('首页', '1', <PieChartOutlined />),
   getItem('添加项目', '2', <DesktopOutlined />),
+  getItem('列表', '3', <DesktopOutlined />),
 ];
 function App() {
   const navigate = useNavigate()
@@ -37,7 +39,10 @@ function App() {
             navigate('/')
           } else if (key === '2') {
             navigate('/add')
-          } else {
+          } else if (key === '3') {
+            navigate('/list')
+          }
+          else {
             navigate('/404')
           }
         }} theme="dark" defaultSelectedKeys={['1']} mode="inline" items={items} style={{
@@ -52,6 +57,7 @@ function App() {
               {/* 在 route 组件中书写你对应的路由，以及路由所对应的组件 */}
               <Route path="/" element={<Home />} />
               <Route path="/add" element={<Add />} />
+              <Route path="/list" element={<List />} />
               <Route path="/home" element={<Navigate to="/" />} />
               <Route path="*" element={<NotFount />} />
               {/* <Route path="/about" element={<Add />} /> */}
