@@ -18,12 +18,7 @@ export default defineConfig({
       '@': path.resolve(__dirname, "src"),
     }
   },
-  plugins: [react(), ohmytsVite({
-    target: '/api',
-    rootDir: r('@types'),
-    proxyOptions: {
-      target: 'https://autumnfish.cn',
-    },
-  }),]
+  plugins: [react(),
+  ]
 })
 
