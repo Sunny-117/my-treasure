@@ -19,28 +19,33 @@ export default function Mentions({
     const [infoArr, setInfoArr] = useState([])
     return (
         <div>
-            <input type="text" value={value} onChange={e => {
-                const newValue = e.target.value;
-                if (newValue.startsWith('@')) {
-                    setShow(true)
-                    const arr = options.map(ele => {
-                        const eleValue = ele.value
-                        const str = newValue.substring(1)
-                        if (eleValue.includes(str)) {
-                            return ele
-                        }
-                    }).filter(item => item)
-                    console.log(arr)
-                    setUlList(arr)
-                    // 过滤
-                } else {
-                    setShow(false)
-                }
-                setValue(newValue)
-            }} />
-            <Tags infoArr={infoArr} deleteItem={(item) => {
-                setInfoArr(infoArr.filter(ele => ele !== item));
-            }} />
+            <input
+                type="text"
+                value={value}
+                onChange={e => {
+                    const newValue = e.target.value;
+                    if (newValue.startsWith('@')) {
+                        setShow(true)
+                        const arr = options.map(ele => {
+                            const eleValue = ele.value
+                            const str = newValue.substring(1)
+                            if (eleValue.includes(str)) {
+                                return ele
+                            }
+                        }).filter(item => item)
+                        console.log(arr)
+                        setUlList(arr)
+                        // 过滤
+                    } else {
+                        setShow(false)
+                    }
+                    setValue(newValue)
+                }} />
+            <Tags
+                infoArr={infoArr}
+                deleteItem={(item) => {
+                    setInfoArr(infoArr.filter(ele => ele !== item));
+                }} />
             {show && <ul>
                 {ulList.map(item => {
                     return <li onClick={() => {
