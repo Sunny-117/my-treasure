@@ -22,7 +22,7 @@ export default function App() {
           <Route path="/demo" element={<Demo></Demo>}></Route>
           <Route path="/MallAdminApp" element={<MallAdminApp></MallAdminApp>}></Route>
           <Route path="/mentions" element={<Test></Test>}></Route>
-
+          <Route path="/ddddd" element={<Demo></Demo>}></Route>
         </Routes>
       </Router>
     </div>

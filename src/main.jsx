@@ -1,10 +1,18 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App'
-import 'antd/dist/antd.css'; // or 'antd/dist/antd.less'
 
-ReactDOM.createRoot(document.getElementById('root')).render(
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './App'
+
+
+
+ReactDOM.render((
   <React.StrictMode>
     <App />
   </React.StrictMode>
-)
+), document.getElementById('root'));
+
+
+document.querySelector("#root").onclick = (e) => {
+  console.log(e, '================================================')
+  console.log('div 为 root 的事件触发了')//1
+}
