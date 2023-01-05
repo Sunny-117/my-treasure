@@ -1,31 +1,20 @@
 import React from 'react'
 
-function sleep() {
-    return new Promise(resolve => {
-        setTimeout(() => {
-            resolve(123)
-        }, 1000);
-    })
-}
+const FancyButton = React.forwardRef((props, ref) => {
+    return (
+        <button ref={ref} className="FancyButton" >
+            {props.children}
+        </button>
+    )
+})
+
 
 export default function Demo() {
+    const ref = React.createRef();
+    console.log('first')
     return (
-        <div style={{
-            border: '1px solid',
-            width: '500px',
-            height: '500px',
-        }}
-            onClick={async (e) => {
-                console.log(e, 'wrapper1')
-                const res = await sleep()
-                console.log(e, 'wrapper2')
-            }}
-        >
-            <button onClick={(e) => {
-                e.stopPropagation()
-                console.log(e.target, 'button')
-            }}>点击</button>
-            <input type="text" name="" id="" />
+        <div>
+            <FancyButton ref={ref}>Click me!</FancyButton>;
         </div>
     )
 }

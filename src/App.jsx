@@ -8,6 +8,7 @@ import StudentDetail from './pages/StudentDetail'
 import Demo from './Demo'
 import MallAdminApp from './pages/MallAdminApp'
 import Test from './components/Mentions/Test'
+import AntdDemo from './AntdDemo'
 
 export default function App() {
   return (
@@ -23,6 +24,7 @@ export default function App() {
           <Route path="/MallAdminApp" element={<MallAdminApp></MallAdminApp>}></Route>
           <Route path="/mentions" element={<Test></Test>}></Route>
           <Route path="/ddddd" element={<Demo></Demo>}></Route>
+          <Route path="/antddemo" element={<AntdDemo></AntdDemo>}></Route>
         </Routes>
       </Router>
     </div>

@@ -2,7 +2,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App'
-
+import 'antd/dist/antd.css';
 
 
 ReactDOM.render((
@@ -10,9 +10,3 @@ ReactDOM.render((
     <App />
   </React.StrictMode>
 ), document.getElementById('root'));
-
-
-document.querySelector("#root").onclick = (e) => {
-  console.log(e, '================================================')
-  console.log('div 为 root 的事件触发了')//1
-}
